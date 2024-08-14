@@ -1,4 +1,6 @@
-package src;
+package src.account;
+
+import src.people.User;
 
 import java.util.Objects;
 

@@ -1,6 +1,7 @@
-package src;
+package src.account;
 
 import lombok.Getter;
+import src.people.User;
 
 import java.util.Objects;
 

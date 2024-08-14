@@ -1,6 +1,7 @@
-package src;
+package src.people;
 
 import lombok.Getter;
+import src.utility.SimpleDate;
 
 @Getter
 public class User extends Person{
@@ -20,7 +21,7 @@ public class User extends Person{
     }
 
     private boolean validateEmail(String email){
-        String emailPattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        String emailPattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
         return email.matches(emailPattern);
     }
 
