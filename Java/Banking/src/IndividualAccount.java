@@ -1,8 +1,11 @@
 package src;
 
+import lombok.Getter;
+
 import java.util.UUID;
 
 public class IndividualAccount extends AbstractAccount {
+    @Getter
     private final User holder;
 
     public IndividualAccount(User holder){
@@ -15,12 +18,11 @@ public class IndividualAccount extends AbstractAccount {
         this.holder = holder;
     }
 
-    public IndividualAccount fromJoint(JointAccount account, User holder){
-        assert holder == account.getHolders()[0] || holder == account.getHolders()[0] : "New holder must be one of the two previous holders.";
+    public static IndividualAccount fromJoint(JointAccount account, User holder){
         return new IndividualAccount(holder, account.getAccountNumber(), account.getBalance());
     }
 
-    public User getHolder(){
-        return this.holder;
+    public static IndividualAccount fromParental(ParentalAccount account){
+        return new IndividualAccount(account.getHolder(), account.getAccountNumber(), account.getBalance());
     }
 }

@@ -16,6 +16,7 @@ public abstract class AbstractAccount implements Account {
     }
 
     protected AbstractAccount(UUID accountNumber, double balance){
+        assert accountNumber != null : "Not a valid account number";
         this.balance = balance;
         this.accountNumber = accountNumber;
     }

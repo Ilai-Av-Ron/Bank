@@ -1,5 +1,8 @@
 package src;
 
+import lombok.Getter;
+
+@Getter
 public class User extends Person{
     private String email;
     private String password;
@@ -14,14 +17,6 @@ public class User extends Person{
 
     public User(String id, SimpleDate birthDate, String email, String password){
         this(id, "", "", 0., birthDate, email, password);
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public String getPassword(){
-        return this.password;
     }
 
     private boolean validateEmail(String email){
