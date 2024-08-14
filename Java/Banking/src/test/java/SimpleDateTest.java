@@ -1,7 +1,5 @@
-package src.test;
-
 import org.junit.jupiter.api.Test;
-import src.utility.SimpleDate;
+import utility.SimpleDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 

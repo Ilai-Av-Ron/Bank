@@ -1,7 +1,7 @@
-package src.people;
+package people;
 
 import lombok.Getter;
-import src.utility.SimpleDate;
+import utility.SimpleDate;
 
 @Getter
 public class User extends Person{

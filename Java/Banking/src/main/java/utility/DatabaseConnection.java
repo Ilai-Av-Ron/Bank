@@ -1,4 +1,4 @@
-package src;
+package utility;
 
 import lombok.Getter;
 
@@ -18,17 +18,16 @@ public class DatabaseConnection {
             Properties prop = new Properties();
             if (input == null) {
                 System.out.println("Sorry, unable to find db.properties");
+            } else {
+                prop.load(input);
+
+                String url = prop.getProperty("db.url");
+                String user = prop.getProperty("db.username");
+                String password = prop.getProperty("db.password");
+
+                connection = DriverManager.getConnection(url, user, password);
+                System.out.println("Connection established successfully.");
             }
-            // Load the properties file
-            prop.load(input);
-
-            // Establish the connection
-            String url = prop.getProperty("db.url");
-            String user = prop.getProperty("db.username");
-            String password = prop.getProperty("db.password");
-
-            connection = DriverManager.getConnection(url, user, password);
-
         } catch (IOException | SQLException ex) {
             ex.printStackTrace();
         }

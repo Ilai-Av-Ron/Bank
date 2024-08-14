@@ -1,6 +1,6 @@
-package src.account;
+package account;
 
-import src.people.User;
+import people.User;
 
 import java.util.Objects;
 

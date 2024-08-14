@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'com.yourcompany'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Add dependencies here
+    implementation 'com.google.guava:guava:30.1-jre'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    runtimeOnly 'mysql:mysql-connector-java:8.0.29'
+}
+
+test {
+    useJUnitPlatform()
+}

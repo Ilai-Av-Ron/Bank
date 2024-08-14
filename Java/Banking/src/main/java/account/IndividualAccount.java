@@ -1,7 +1,7 @@
-package src.account;
+package account;
 
 import lombok.Getter;
-import src.people.User;
+import people.User;
 
 import java.util.UUID;
 

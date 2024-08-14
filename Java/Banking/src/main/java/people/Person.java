@@ -1,8 +1,8 @@
-package src.people;
+package people;
 
 import java.util.Random;
 import lombok.*;
-import src.utility.SimpleDate;
+import utility.SimpleDate;
 
 
 @Data
