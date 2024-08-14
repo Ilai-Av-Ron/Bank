@@ -1,12 +1,17 @@
 package src;
 
+import lombok.Getter;
+
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.HashMap;
 
 public class SimpleDate {
+    @Getter
     private final int year;
+    @Getter
     private final int month;
+    @Getter
     private final int day;
 
     final int[] shortMonths = {4, 6, 9, 11};
@@ -33,7 +38,7 @@ public class SimpleDate {
         this.day = day;
     }
 
-    public SimpleDate fromString(String date){
+    public static SimpleDate fromString(String date){
         String regex = "^\\d{4}-\\d{2}-\\d{2}$";
         assert date.matches(regex) : "String not in format YYYY-MM-DD";
         String[] parts = date.split("-");
@@ -84,4 +89,5 @@ public class SimpleDate {
         }
         return this.day <= other.day;
     }
+
 }
