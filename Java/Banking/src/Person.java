@@ -1,4 +1,5 @@
-import java.util.Date;
+package src;
+
 import java.util.Random;
 import lombok.*;
 
@@ -9,23 +10,24 @@ public class Person {
     private String firstName;
     private String lastName;
     private Double monthlyIncome;
-    private Date birthDate;
+    private SimpleDate birthDate;
+    private Boolean isMinor;
 
-    public Person(String id, String firstName, String lastName, Double monthlyIncome, Date birthDate) {
+    public Person(String id, String firstName, String lastName, Double monthlyIncome, SimpleDate birthDate) {
         assert monthlyIncome >= 0 : "Monthly income can't be a negative value.";
-        assert birthDate.before(new Date()) : "Birth date can't must be earlier than today.";
+        assert birthDate.before(SimpleDate.today()) : "Birth date must be earlier than today.";
         assert validateId(id) : "Id must be unique, and should be comprised of nine digits.";
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.monthlyIncome = monthlyIncome;
         this.birthDate = birthDate;
+        this.isMinor = new SimpleDate(birthDate.getYear() + 18, birthDate.getMonth(), birthDate.getDay()).before(SimpleDate.today());
     }
 
-    public Person(String id, Date birthDate){
+    public Person(String id, SimpleDate birthDate){
         this(id, "", "", 0., birthDate);
     }
-
 
     public Boolean validateId(String id){
         if (true){
