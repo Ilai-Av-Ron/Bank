@@ -6,14 +6,13 @@ import lombok.*;
 
 @Data
 public class Person {
-    private String id;
+    private final String id;
     private String firstName;
     private String lastName;
-    private Double monthlyIncome;
-    private SimpleDate birthDate;
-    private Boolean isMinor;
+    private double monthlyIncome;
+    private final SimpleDate birthDate;
 
-    public Person(String id, String firstName, String lastName, Double monthlyIncome, SimpleDate birthDate) {
+    public Person(String id, String firstName, String lastName, double monthlyIncome, SimpleDate birthDate) {
         assert monthlyIncome >= 0 : "Monthly income can't be a negative value.";
         assert birthDate.before(SimpleDate.today()) : "Birth date must be earlier than today.";
         assert validateId(id) : "Id must be unique, and should be comprised of nine digits.";
@@ -22,7 +21,6 @@ public class Person {
         this.lastName = lastName;
         this.monthlyIncome = monthlyIncome;
         this.birthDate = birthDate;
-        this.isMinor = new SimpleDate(birthDate.getYear() + 18, birthDate.getMonth(), birthDate.getDay()).before(SimpleDate.today());
     }
 
     public Person(String id, SimpleDate birthDate){

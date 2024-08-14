@@ -2,7 +2,7 @@ package src;
 
 import java.util.UUID;
 
-public class AbstractAccount implements Account {
+public abstract class AbstractAccount implements Account {
     protected final UUID accountNumber;
     protected double balance;
 
