@@ -15,6 +15,11 @@ public abstract class AbstractAccount implements Account {
         this.accountNumber = accountNumber;
     }
 
+    protected AbstractAccount(UUID accountNumber, double balance){
+        this.balance = balance;
+        this.accountNumber = accountNumber;
+    }
+
     @Override
     public void deposit(double amount) {
         this.balance += amount;
