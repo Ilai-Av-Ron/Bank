@@ -28,4 +28,16 @@ public class User extends Person{
         String passwordPattern = "^[a-zA-Z0-9@#$%&*!]*$";
         return password.length() >= 8 && password.matches(passwordPattern);
     }
+
+    public void setEmail(String password, String previousEmail, String newEmail){
+        assert this.email.equals(previousEmail) && this.password.equals(password) : "Wrong credentials.";
+        assert validateEmail(newEmail) : "Not a valid email format";
+        this.email = newEmail;
+    }
+
+    public void setPassword(String previousPassword, String newPassword, String email){
+        assert this.password.equals(previousPassword) && this.email.equals(email) : "Wrong credentials.";
+        assert validatePassword(newPassword) : "Password must contain only English letters, digits, and symbols. Must be at least 8 characters long.";
+        this.password = newPassword;
+    }
 }
