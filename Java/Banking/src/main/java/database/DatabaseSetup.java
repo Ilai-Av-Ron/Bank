@@ -1,8 +1,6 @@
 package database;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DatabaseSetup {
 
@@ -108,9 +106,20 @@ public class DatabaseSetup {
                          "transfer_amount decimal (10, 2) not null check (transfer_amount > 0))";
              stmt.executeUpdate(q9);
             System.out.println("Tables created successfully.");
+        } catch (SQLIntegrityConstraintViolationException e) {
+            // Handle integrity constraints (like duplicate keys)
+            System.err.println("Error: Integrity constraint violation - " + e.getMessage());
+        } catch (SQLTimeoutException e) {
+            // Handle timeouts
+            System.err.println("Error: Timeout occurred - " + e.getMessage());
         } catch (SQLException e) {
-            e.printStackTrace();
+            // Handle other SQL exceptions
+            System.err.println("SQL Error: " + e.getMessage());
+        } catch (Exception e) {
+            // Handle non-SQL exceptions
+            System.err.println("Non-SQL Error: " + e.getMessage());
         }
+
     }
 
     public static void main(String[] args) {
