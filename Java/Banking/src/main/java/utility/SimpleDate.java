@@ -3,8 +3,10 @@ package utility;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class SimpleDate {
     @Getter
@@ -31,14 +33,14 @@ public class SimpleDate {
         monthNames.put(12, "December");
     }
 
-    public SimpleDate(int year, int month, int day){
+    public SimpleDate(int year, int month, int day) {
         assert validateDate(year, month, day);
         this.year = year;
         this.month = month;
         this.day = day;
     }
 
-    public static SimpleDate fromString(String date){
+    public static SimpleDate fromString(String date) {
         String regex = "^\\d{4}-\\d{2}-\\d{2}$";
         assert date.matches(regex) : "String not in format YYYY-MM-DD";
         String[] parts = date.split("-");
@@ -48,7 +50,7 @@ public class SimpleDate {
         return new SimpleDate(year, month, day);
     }
 
-    public static SimpleDate today(){
+    public static SimpleDate today() {
         LocalDate today = LocalDate.now();
         int year = today.getYear();
         int month = today.getMonthValue();
@@ -56,7 +58,7 @@ public class SimpleDate {
         return new SimpleDate(year, month, day);
     }
 
-    private boolean validateDate(int year, int month, int day){
+    private boolean validateDate(int year, int month, int day) {
         assert year >= 0 : "Year can't be nagative.";
         assert month <= 12 && month >= 1 : "Month must be between 1 and 12";
         assert day >= 1 && day <= 31 : "Day must be between 1 and 31";
@@ -75,19 +77,39 @@ public class SimpleDate {
     }
 
     public boolean before(SimpleDate other){
-        if (this.year > other.year){
+        if (this.year > other.year) {
             return false;
         }
-        if (this.year < other.year){
+        if (this.year < other.year) {
             return true;
         }
-        if (this.month > other.month){
+        if (this.month > other.month) {
             return false;
         }
-        if (this.month < other.month){
+        if (this.month < other.month) {
             return true;
         }
         return this.day <= other.day;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SimpleDate that = (SimpleDate) o;
+        return year == that.year && month == that.month && day == that.day;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(year, month, day);
+        result = 31 * result + Arrays.hashCode(shortMonths);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%04d-%02d-%02d", year, month, day);
     }
 
 }

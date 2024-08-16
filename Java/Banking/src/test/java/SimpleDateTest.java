@@ -39,4 +39,15 @@ public class SimpleDateTest {
         assertThrows(AssertionError.class, () -> new SimpleDate(2024, 4, 31), "April has only 30 days");
         assertThrows(AssertionError.class, () -> new SimpleDate(2023, 2, 29), "2023 is not a leap year");
     }
+
+    @Test
+    public void testDateToString() {
+        SimpleDate date1 = new SimpleDate(1999, 2, 1);
+        SimpleDate date2 = new SimpleDate(2024, 8, 16);
+        SimpleDate date3 = new SimpleDate(0, 12, 31);
+        assert (date1.toString().equals("1999-02-01"));
+        assert (date2.toString().equals("2024-08-16"));
+        assert (date3.toString().equals("0000-12-31"));
+
+    }
 }

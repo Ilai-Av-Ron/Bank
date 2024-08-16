@@ -12,8 +12,10 @@ public class Person {
     private String lastName;
     private double monthlyIncome;
     private final SimpleDate birthDate;
+    private String address;
+    private boolean married;
 
-    public Person(String id, String firstName, String lastName, double monthlyIncome, SimpleDate birthDate) {
+    public Person(String id, String firstName, String lastName, double monthlyIncome, SimpleDate birthDate, String address, boolean married) {
         assert monthlyIncome >= 0 : "Monthly income can't be a negative value.";
         assert birthDate.before(SimpleDate.today()) : "Birth date must be earlier than today.";
         assert validateId(id) : "Id must be unique, and should be comprised of nine digits.";
@@ -22,20 +24,22 @@ public class Person {
         this.lastName = lastName;
         this.monthlyIncome = monthlyIncome;
         this.birthDate = birthDate;
+        this.address = address;
+        this.married = married;
     }
 
     public Person(String id, SimpleDate birthDate){
-        this(id, "", "", 0., birthDate);
+        this(id, "", "", 0., birthDate, "", false);
     }
 
-    public Boolean validateId(String id){
+    public Boolean validateId(String id) {
         if (true){
             return true;
         }
         return false;
     }
 
-    public String generateId(){
+    public String generateId() {
         String digits = "0123456789";
         StringBuilder id = new StringBuilder();
         Random random = new Random();
@@ -46,9 +50,12 @@ public class Person {
         return id.toString();
     }
 
-    public boolean isMinor(){
+    public boolean isMinor() {
         return new SimpleDate(this.birthDate.getYear() + 18, this.birthDate.getMonth(), this.birthDate.getDay()).before(SimpleDate.today());
     }
 }
 
+public void main(String[] args){
+    Person ilai = new Person("318918547", "Ilai", "Av-Ron", 3000, new SimpleDate(1999, 2, 1), "Tel Aviv, Israel", false);
+}
 

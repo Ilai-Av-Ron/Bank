@@ -107,16 +107,12 @@ public class DatabaseSetup {
              stmt.executeUpdate(q9);
             System.out.println("Tables created successfully.");
         } catch (SQLIntegrityConstraintViolationException e) {
-            // Handle integrity constraints (like duplicate keys)
             System.err.println("Error: Integrity constraint violation - " + e.getMessage());
         } catch (SQLTimeoutException e) {
-            // Handle timeouts
             System.err.println("Error: Timeout occurred - " + e.getMessage());
         } catch (SQLException e) {
-            // Handle other SQL exceptions
             System.err.println("SQL Error: " + e.getMessage());
         } catch (Exception e) {
-            // Handle non-SQL exceptions
             System.err.println("Non-SQL Error: " + e.getMessage());
         }
 
