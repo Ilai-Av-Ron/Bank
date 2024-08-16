@@ -15,6 +15,9 @@ public class JointAccount extends AbstractAccount {
         this.holder2 = holder2;
     }
 
+    public User getHolder() {
+        return this.holder1;
+    }
     public User[] getHolders(){
         return new User[] {this.holder1, this.holder2};
     }
