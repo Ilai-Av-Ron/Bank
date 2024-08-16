@@ -55,7 +55,5 @@ public class Person {
     }
 }
 
-public void main(String[] args){
-    Person ilai = new Person("318918547", "Ilai", "Av-Ron", 3000, new SimpleDate(1999, 2, 1), "Tel Aviv, Israel", false);
-}
+
 

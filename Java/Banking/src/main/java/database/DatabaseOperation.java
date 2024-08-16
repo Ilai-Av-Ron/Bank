@@ -26,5 +26,4 @@ public class DatabaseOperation {
         }
     }
 
-//    private String formatQuery
 }
