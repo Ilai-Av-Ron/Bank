@@ -53,6 +53,8 @@ public class Person {
     public boolean isMinor() {
         return new SimpleDate(this.birthDate.getYear() + 18, this.birthDate.getMonth(), this.birthDate.getDay()).before(SimpleDate.today());
     }
+
+
 }
 
 

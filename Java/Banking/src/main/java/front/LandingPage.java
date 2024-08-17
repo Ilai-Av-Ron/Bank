@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 public class LandingPage extends Application {
 
     public void start(Stage primaryStage) {
-        // Create a label with a welcome message
         Label welcomeLabel = new Label("Welcome to My Bank");
         welcomeLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 20px;");
 

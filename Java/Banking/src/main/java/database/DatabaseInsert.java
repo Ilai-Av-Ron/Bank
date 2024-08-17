@@ -10,8 +10,6 @@ import people.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import utility.SimpleDate;
 
-import java.sql.*;
-
 public class DatabaseInsert {
 
     public static void insertNewPerson(Person p) {

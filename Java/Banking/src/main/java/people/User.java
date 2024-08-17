@@ -3,6 +3,10 @@ package people;
 import lombok.Getter;
 import utility.SimpleDate;
 
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 @Getter
 public class User extends Person {
     private String email;
@@ -18,6 +22,20 @@ public class User extends Person {
 
     public User(String id, SimpleDate birthDate, String email, String password) {
         this(id, "", "", 0., birthDate, "", false, email, password);
+    }
+
+    public User(ResultSet res) throws SQLException {
+        this(
+                res.getString("id_number"),
+                res.getString("first_name"),
+                res.getString("last_name"),
+                res.getDouble("monthly_income"),
+                new SimpleDate(res.getDate("birth_date").getYear() + 1900, res.getDate("birth_date").getMonth() + 1, res.getDate("birth_date").getDate()),
+                res.getString("address"),
+                res.getBoolean("married"),
+                res.getString("email"),
+                "88888888"
+        );
     }
 
     private boolean validateEmail(String email) {
@@ -41,4 +59,5 @@ public class User extends Person {
         assert validatePassword(newPassword) : "Password must contain only English letters, digits, and symbols. Must be at least 8 characters long.";
         this.password = newPassword;
     }
+
 }

@@ -28,7 +28,6 @@ public class DatabaseInsertionTest {
     public void testPersonInsertion() {
         DatabaseInsert.insertNewPerson(ilai);
         DatabaseInsert.insertNewPerson(danco);
-
     }
 
     @Test
