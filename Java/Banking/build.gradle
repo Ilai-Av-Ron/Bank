@@ -1,22 +1,35 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.14'
 }
 
-group 'com.yourcompany'
+group 'ilai'
 version '1.0'
 
 repositories {
     mavenCentral()
 }
 
+javafx {
+    version = "19.0.2"
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
 dependencies {
     implementation 'com.google.guava:guava:30.1-jre'
     implementation 'org.springframework.security:spring-security-crypto:5.7.3'
     implementation 'commons-logging:commons-logging:1.2'
+    implementation 'org.openjfx:javafx-controls:19.0.2'
+    implementation 'org.openjfx:javafx-fxml:19.0.2'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
     runtimeOnly 'mysql:mysql-connector-java:8.0.29'
+}
+
+application {
+    mainClassName = 'front.Launcher'
 }
 
 test {

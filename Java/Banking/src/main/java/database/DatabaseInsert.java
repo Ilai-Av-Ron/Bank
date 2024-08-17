@@ -2,6 +2,7 @@ package database;
 
 import account.Account;
 import account.IndividualAccount;
+import account.JointAccount;
 import account.ParentalAccount;
 import people.Person;
 import people.User;
@@ -74,6 +75,30 @@ public class DatabaseInsert {
                         "(account_id, guardian_id, dependent_id, balance, guardian_first_name, guardian_last_name, dependent_first_name, dependent_last_name, is_minor, created_at)" +
                         "values ('%s', '%s', '%s', %f, '%s', '%s', '%s', '%s', %d, '%s')",
                 a.getAccountNumber(), a.getGuardian().getId(), a.getHolder().getId(), a.getBalance(),a.getGuardian().getFirstName(), a.getGuardian().getLastName(), a.getHolder().getFirstName(), a.getHolder().getLastName(), a.getHolder().isMinor() ? 1 : 0 , SimpleDate.today());
+        DatabaseOperation dbop = new DatabaseOperation(sqlQuery);
+        dbop.execute();
+    }
+
+    public static void insertNewJointAccount(JointAccount a) {
+        insertNewAccount(a, a.getHolder().getId());
+        User[] holders = a.getHolders();
+        User holder1 = holders[0];
+        User holder2 = holders[1];
+        String sqlQuery = String.format(
+                "insert into joint_accounts " +
+                        "(account_id, holder1_id, holder2_id, balance, holder1_first_name, holder1_last_name, holder2_first_name, holder2_last_name, created_at)" +
+                        "values ('%s', '%s', '%s', %f, '%s', '%s', '%s', '%s', '%s')",
+                a.getAccountNumber(), holder1.getId(), holder2.getId(), a.getBalance(), holder1.getFirstName(), holder1.getLastName(), holder2.getFirstName(), holder2.getLastName(), SimpleDate.today());
+        DatabaseOperation dbop = new DatabaseOperation(sqlQuery);
+        dbop.execute();
+    }
+
+    public static void insertNewTransaction(Account a, String transaction_id, String action, double amount) {
+        String sqlQuery = String.format(
+                "insert into transactions " +
+                        "(transaction_id, account_id, transaction_date, action, amount)" +
+                        "values ('%s', '%s', '%s', '%s', %f)",
+                transaction_id, a.getAccountNumber(), SimpleDate.today(), action, amount);
         DatabaseOperation dbop = new DatabaseOperation(sqlQuery);
         dbop.execute();
     }
