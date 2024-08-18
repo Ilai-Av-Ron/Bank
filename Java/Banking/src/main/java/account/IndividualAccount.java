@@ -7,7 +7,7 @@ import utility.SimpleDate;
 import java.util.UUID;
 
 @Getter
-public class IndividualAccount extends AbstractAccount {
+public class IndividualAccount extends BaseAccount {
     private final User holder;
 
     public IndividualAccount(User holder){
@@ -16,7 +16,7 @@ public class IndividualAccount extends AbstractAccount {
     }
 
     private IndividualAccount(User holder, UUID accountNumber, double balance, SimpleDate dateCreated){
-        super(accountNumber, balance, dateCreated);
+        super(accountNumber, balance, dateCreated, "individual_account");
         this.holder = holder;
     }
 

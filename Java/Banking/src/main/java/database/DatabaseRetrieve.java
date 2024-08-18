@@ -17,19 +17,28 @@ public class DatabaseRetrieve {
 
     private static final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-
-    public static User retrieveUserEmail(String email, String password) {
+    public static ResultSet retrieveUserEmail(String email, String password) {
         String sqlQuery = String.format(
                 "select users.id_number, users.first_name, users.last_name, people.birth_date, people.address, people.married, people.monthly_income, users.email, users.password " +
                 "from users left join people on users.id_number = people.id_number " +
                 "where email = '%s'", email);
+        return getUser(password, sqlQuery);
+    }
+    public static ResultSet retrieveUserId(String id, String password) {
+        String sqlQuery = String.format(
+                "select users.id_number, users.first_name, users.last_name, people.birth_date, people.address, people.married, people.monthly_income, users.email, users.password " +
+                        "from users left join people on users.id_number = people.id_number " +
+                        "where users.id_number = '%s'", id);
+        return getUser(password, sqlQuery);
+    }
+    private static ResultSet getUser(String password, String sqlQuery) {
         DatabaseOperation dbop = new DatabaseOperation(sqlQuery);
         ResultSet res = dbop.retrieve();
         try {
             if (res.next()) {
                 String storedHash = res.getString("password");
                 if (passwordEncoder.matches(password, storedHash)) {
-                    return new User(res);
+                    return res;
                 }
             }
         } catch (SQLException e) {
@@ -37,11 +46,12 @@ public class DatabaseRetrieve {
         }
         return null;
     }
-    public static void retrieveUserId(String id, String password) {
+    public static ResultSet retrieveUserAccounts(String holderId) {
         String sqlQuery = String.format(
-                "select * from users " +
-                        "where email = '%s' and password = '%s'", id, password);
+                "select * from accounts " +
+                        "where holder_id = '%s'", holderId);
         DatabaseOperation dbop = new DatabaseOperation(sqlQuery);
-        ResultSet res = dbop.retrieve();
+        return dbop.retrieve();
     }
+
 }

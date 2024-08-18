@@ -4,7 +4,7 @@ import people.User;
 
 import java.util.Objects;
 
-public class JointAccount extends AbstractAccount {
+public class JointAccount extends BaseAccount {
     private final User holder1;
     private final User holder2;
 

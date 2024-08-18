@@ -5,7 +5,7 @@ import people.User;
 
 import java.util.Objects;
 
-public class ParentalAccount extends AbstractAccount{
+public class ParentalAccount extends BaseAccount {
     private final User child;
     @Getter
     private User guardian;
