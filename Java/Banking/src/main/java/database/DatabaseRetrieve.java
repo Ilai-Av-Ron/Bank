@@ -48,8 +48,14 @@ public class DatabaseRetrieve {
     }
     public static ResultSet retrieveUserAccounts(String holderId) {
         String sqlQuery = String.format(
-                "select * from accounts " +
-                        "where holder_id = '%s'", holderId);
+                "select account_id, holder_id, balance, created_at, account_type from accounts " +
+                        "where holder_id = '%s' and active = 1 " +
+                "union " +
+                "select account_id, dependent_id as holder_id, balance, created_at, 'parental_account' as account_type from parental_accounts " +
+                        "where dependent_id = '%s' " +
+                "union " +
+                "select account_id, holder2_id as holder_id, balance, created_at, 'joint_account' as account_type from joint_accounts ", holderId, holderId);
+        System.out.println(sqlQuery);
         DatabaseOperation dbop = new DatabaseOperation(sqlQuery);
         return dbop.retrieve();
     }

@@ -38,7 +38,7 @@ public class DatabaseInsertionTest {
 
     @Test
     public void testIndividualAccountInsertion() {
-        IndividualAccount ilaiAcc = new IndividualAccount(ilai_user);
+        IndividualAccount ilaiAcc = new IndividualAccount(aviva);
         DatabaseInsert.insertNewIndividualAccount(ilaiAcc);
     }
 
