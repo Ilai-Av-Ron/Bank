@@ -30,7 +30,7 @@ public class DatabaseSetup {
              String q2 = "create table if not exists accounts (" +
                          "account_id char(36) primary key, " +
                          "holder_id varchar(9) not null, " +
-                         "account_type enum ('individual_account', 'joint_account', 'parental_account'), " +
+                             "s, " +
                          "balance decimal(12, 2), " +
                          "active tinyint not null, " +
                          "created_at date default (current_date), " +

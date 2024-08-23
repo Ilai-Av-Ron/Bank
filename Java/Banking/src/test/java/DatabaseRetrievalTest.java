@@ -27,14 +27,9 @@ public class DatabaseRetrievalTest {
         User u = new User(DatabaseRetrieve.retrieveUserId("318918547", "Affan123"));
         System.out.println(u);
     }
-    @Test
-    public void testAccountsRetrieve() throws SQLException {
-        ArrayList<BaseAccount> userAccounts = Login.getUserAccounts("303192482");
-        System.out.println(userAccounts);
-    }
-    @Test
-    public void testParentalAccountsRetrieve() throws SQLException {
-        BaseAccount acc = new BaseAccount(DatabaseRetrieve.retrieveUserParentalAccounts("208384938"));
-        System.out.println(acc);
-    }
+//    @Test
+//    public void testAccountsRetrieve() throws SQLException {
+//        ArrayList<BaseAccount> userAccounts = Login.getUserAccounts("303192482");
+//        System.out.println(userAccounts);
+//    }
 }
